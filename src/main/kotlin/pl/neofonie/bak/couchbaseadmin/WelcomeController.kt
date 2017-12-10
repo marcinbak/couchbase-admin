@@ -20,7 +20,6 @@ class WelcomeController {
 
   @PostMapping("/syncgateway")
   fun syncagtewaySubmit(@ModelAttribute syncgateway: SyncGatewayConnection): String {
-    logger.error("Marcinnnnnn !!!!!!!!!!!!!")
     return "result"
   }
 }

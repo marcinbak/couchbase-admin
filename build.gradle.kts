@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.2.0"
+val kotlinVersion = "1.1.61"
 val springBootVersion = "2.0.0.M7"
 val jUnitVersion = "5.0.0"
 val bootstrapVersion = "3.3.7"
@@ -20,7 +20,6 @@ buildscript {
   }
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
   }
 }
@@ -63,7 +62,7 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.webjars:bootstrap:$bootstrapVersion")
   compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
-  compile("org.jetbrains.kotlin:kotlin-reflect")
+  compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
   runtime("org.springframework.boot:spring-boot-devtools")
   testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,8 +1,10 @@
 package pl.neofonie.bak.couchbaseadmin
 
 import logger
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
@@ -10,14 +12,20 @@ class WelcomeController {
 
   private val logger = logger()
 
-  // inject via application.properties
-  @Value("\${welcome.message:test}")
-  private val message = "Hello World"
-
   @RequestMapping("/")
-  fun welcome(model: MutableMap<String, Any>): String {
-    model.put("message", this.message)
+  fun welcome(model: Model): String {
+    model.addAttribute("syncgateway", SyncGatewayConnection())
     return "welcome"
   }
 
+  @PostMapping("/syncgateway")
+  fun syncagtewaySubmit(@ModelAttribute syncgateway: SyncGatewayConnection): String {
+    logger.error("Marcinnnnnn !!!!!!!!!!!!!")
+    return "result"
+  }
 }
+
+data class SyncGatewayConnection(var host: String = "http://localhost",
+                                 var port: Int? = 4985,
+                                 var username: String? = null,
+                                 var password: String? = null)

@@ -58,7 +58,7 @@ repositories {
 }
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-data-couchbase-reactive")
+//  compile("org.springframework.boot:spring-boot-starter-data-couchbase-reactive")
   compile("org.springframework.boot:spring-boot-starter-thymeleaf")
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.webjars:bootstrap:$bootstrapVersion")

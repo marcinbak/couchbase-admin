@@ -1,9 +1,6 @@
 # couchbase-admin
 
 TODO:
-1. Sync gateway connection screen: host, port, username, password
-2. List databases
-3. List documents in selected database
 4. View document (user properties, sync gateway metadata)
 5. Delete document
 6. Edit document

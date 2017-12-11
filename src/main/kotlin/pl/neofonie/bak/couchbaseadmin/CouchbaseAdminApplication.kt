@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CouchbaseAdminApplication
 
 fun main(args: Array<String>) {
-    runApplication<CouchbaseAdminApplication>(*args)
+  runApplication<CouchbaseAdminApplication>(*args)
 }

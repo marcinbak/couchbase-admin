@@ -12,3 +12,6 @@ TODO:
 9. Delete attachment
 10. Override attachment
 11. Filter documents via live query
+12. Make asynchronous
+13. Use websockets (autoupdate)
+14. Create database

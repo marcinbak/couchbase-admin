@@ -57,12 +57,13 @@ repositories {
 }
 
 dependencies {
-//  compile("org.springframework.boot:spring-boot-starter-data-couchbase-reactive")
+  //  compile("org.springframework.boot:spring-boot-starter-data-couchbase-reactive")
   compile("org.springframework.boot:spring-boot-starter-thymeleaf")
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.webjars:bootstrap:$bootstrapVersion")
   compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
   compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+  compile("com.fasterxml.jackson.module:jackson-module-kotlin")
   runtime("org.springframework.boot:spring-boot-devtools")
   testCompile("org.springframework.boot:spring-boot-starter-test")
 }

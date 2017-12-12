@@ -7,25 +7,17 @@
 </head>
 <body>
 
-<div id="wrapper">
-  <div id="container" class="container">
-
-    <div layout:fragment="content" class="starter-template">
-      <h1>Couchbase Sync Gateway Admin Tool</h1>
-      <h2>Enter Sync Gateway connection details</h2>
-      <form action="#" th:action="@{/syncgateway}" th:object="${syncgateway}" method="post">
-        <p>Host: <input type="text" th:field="*{host}"/></p>
-        <p>Port: <input type="number" th:field="*{port}"/></p>
-        <p>Username: <input type="text" th:field="*{username}"/></p>
-        <p>Password: <input type="text" th:field="*{password}"/></p>
-        <p><input type="submit" value="Connect"/> <input type="reset" value="Reset"/></p>
-      </form>
-
-    </div>
-
-  </div>
+<div layout:fragment="content" class="starter-template">
+  <h1>Couchbase Sync Gateway Admin Tool</h1>
+  <h2>Enter Sync Gateway connection details</h2>
+  <form action="#" th:action="@{/syncgateway}" th:object="${syncgateway}" method="post">
+    <p>Host: <input type="text" th:field="*{host}"/></p>
+    <p>Port: <input type="number" th:field="*{port}"/></p>
+    <p>Username: <input type="text" th:field="*{username}"/></p>
+    <p>Password: <input type="text" th:field="*{password}"/></p>
+    <p><input type="submit" value="Connect"/> <input type="reset" value="Reset"/></p>
+  </form>
 </div>
-<!-- /.container -->
 
 </body>
 </html>

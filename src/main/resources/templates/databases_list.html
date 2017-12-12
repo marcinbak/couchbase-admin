@@ -7,21 +7,14 @@
 </head>
 <body>
 
-<div id="wrapper">
-  <div id="container" class="container">
+<div layout:fragment="content" class="starter-template">
+  <h1>Couchbase Sync Gateway Admin Tool</h1>
+  <h2>List of databases</h2>
+  <ul>
+    <li th:each="dbname : ${databases}"><a th:href="@{~/database/{db}/(db=${dbname})}" th:text="${dbname}"></a></li>
+  </ul>
 
-    <div layout:fragment="content" class="starter-template">
-      <h1>Couchbase Sync Gateway Admin Tool</h1>
-      <h2>List of databases</h2>
-      <ul>
-        <li th:each="dbname : ${databases}"><a th:href="@{~/database/{db}/(db=${dbname})}" th:text="${dbname}"></a></li>
-      </ul>
-
-    </div>
-
-  </div>
 </div>
-<!-- /.container -->
 
 </body>
 </html>

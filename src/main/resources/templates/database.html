@@ -7,22 +7,15 @@
 </head>
 <body>
 
-<div id="wrapper">
-  <div id="container" class="container">
+<div layout:fragment="content" class="starter-template">
+  <h1>Couchbase Sync Gateway Admin Tool</h1>
+  <h2 th:text="${'List of documents in ' + database}"></h2>
+  <ul>
+    <li th:each="doc : ${allDocs.rows}"><a th:href="@{{docId}(docId=${doc.id})}"
+                                           th:text="${doc.id}"></a></li>
+  </ul>
 
-    <div layout:fragment="content" class="starter-template">
-      <h1>Couchbase Sync Gateway Admin Tool</h1>
-      <h2 th:text="${'List of documents in ' + database}"></h2>
-      <ul>
-        <li th:each="doc : ${allDocs.rows}"><a th:href="@{{docId}(docId=${doc.id})}"
-                                               th:text="${doc.id}"></a></li>
-      </ul>
-
-    </div>
-
-  </div>
 </div>
-<!-- /.container -->
 
 </body>
 </html>

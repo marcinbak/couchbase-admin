@@ -34,6 +34,13 @@ class WelcomeController @Autowired constructor(private val couchbase: CouchbaseS
 
     return "database"
   }
+
+  @GetMapping("/database/{dbName}/{docId}")
+  fun documentInfo(@PathVariable dbName: String, @PathVariable docId: String, model: Model, @ModelAttribute syncgateway: SyncGatewayConnection): String {
+    val allDocs = couchbase.allDocs(syncgateway, dbName)
+
+    return "document"
+  }
 }
 
 data class SyncGatewayConnection(var host: String = "http://localhost",

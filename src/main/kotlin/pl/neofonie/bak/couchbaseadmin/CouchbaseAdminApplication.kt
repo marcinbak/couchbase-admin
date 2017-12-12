@@ -4,7 +4,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class CouchbaseAdminApplication
+class CouchbaseAdminApplication {
+
+}
 
 fun main(args: Array<String>) {
   runApplication<CouchbaseAdminApplication>(*args)

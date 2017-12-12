@@ -60,6 +60,7 @@ dependencies {
   //  compile("org.springframework.boot:spring-boot-starter-data-couchbase-reactive")
   compile("org.springframework.boot:spring-boot-starter-thymeleaf")
   compile("org.springframework.boot:spring-boot-starter-web")
+  compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2")
   compile("org.webjars:bootstrap:$bootstrapVersion")
   compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
   compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")

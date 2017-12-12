@@ -11,7 +11,7 @@
   <h1>Couchbase Sync Gateway Admin Tool</h1>
   <h2 th:text="${'List of documents in ' + database}"></h2>
   <ul>
-    <li th:each="doc : ${allDocs.rows}"><a th:href="@{{docId}(docId=${doc.id})}"
+    <li th:each="doc : ${allDocs.rows}"><a th:href="@{{docId}/(docId=${doc.id})}"
                                            th:text="${doc.id}"></a></li>
   </ul>
 

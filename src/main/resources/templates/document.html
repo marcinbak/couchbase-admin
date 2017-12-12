@@ -11,7 +11,38 @@
 
   <h1>Couchbase Sync Gateway Admin Tool</h1>
   <h2 th:text="${'Documents properties'}"></h2>
+
+
   <h2 th:text="${'Attachments'}"></h2>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover dataTable">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Revision</th>
+        <th>Content type</th>
+        <th>Digest</th>
+        <th>Length</th>
+        <th></th> <!-- Update button -->
+        <th></th> <!-- Delete button -->
+      </tr>
+      </thead>
+      <tbody>
+      <!--<tr ng-repeat="package in vm.purchasedLicencePackages">-->
+      <tr th:each="attach : ${attachments.entrySet()}">
+        <td><a th:href="@{{attachId}(attachId=${attach.key})}" th:text="${attach.key}"></a></td>
+        <td th:text="${attach.value.revpos}"></td>
+        <td th:text="${attach.value.contentType}"></td>
+        <td th:text="${attach.value.digest}"></td>
+        <td th:text="${attach.value.length}"></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 
 </div>
 

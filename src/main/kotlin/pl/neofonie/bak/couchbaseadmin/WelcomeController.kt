@@ -44,7 +44,7 @@ class WelcomeController @Autowired constructor(private val couchbase: CouchbaseS
   fun documentInfo(@PathVariable dbName: String, @PathVariable docId: String, model: Model, @ModelAttribute syncgateway: SyncGatewayConnection): String {
     val docInfo = couchbase.getDocument(syncgateway, dbName, docId)
 
-    model.addAttribute("databaseDetails", docInfo.userProperties)
+    model.addAttribute("databaseDetails", docInfo)
     model.addAttribute("attachments", docInfo.attachments)
 
     return "document"

@@ -3,5 +3,10 @@ h1{
 }
 
 h2{
-	color:#FF0000;
+	color:#FF6611;
+}
+
+.resizedTextbox {
+  width: 200px;
+  height: 200px;
 }

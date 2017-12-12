@@ -1,6 +1,8 @@
 package pl.neofonie.bak.couchbaseadmin.services
 
 import com.fasterxml.jackson.annotation.*
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.convertValue
 import logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,7 +15,8 @@ import pl.neofonie.bak.couchbaseadmin.toUrl
 import java.net.URI
 
 @Service
-class CouchbaseService @Autowired constructor(private val restTemplate: AuthedRestTemplate) {
+class CouchbaseService @Autowired constructor(private val restTemplate: AuthedRestTemplate,
+                                              private val mapper: ObjectMapper) {
 
   private val logger = logger()
 
@@ -21,6 +24,11 @@ class CouchbaseService @Autowired constructor(private val restTemplate: AuthedRe
     private val ALL_DBS_REQUEST = "_all_dbs"
     private val CONFIG_REQUEST = "_config"
     private val ALL_DOCS_REQUEST = "_all_docs"
+    private val ATTACHMENTS = "_attachments"
+    private val ID = "_id"
+    private val REVISION = "_rev"
+
+    private val SYNC_GATEWAY_META = arrayListOf(ID, REVISION, ATTACHMENTS)
   }
 
   fun info(input: SyncGatewayConnection): List<String> {
@@ -42,27 +50,30 @@ class CouchbaseService @Autowired constructor(private val restTemplate: AuthedRe
   fun getDocument(input: SyncGatewayConnection, db: String, docId: String): DocumentResponse {
     val url = input.toUrl()
     try {
-      val response = restTemplate.restTemplate.getForEntity<DocumentResponse>("$url/$db/$docId")
-      return response.body!!
+      val response = restTemplate.restTemplate.getForEntity<Map<String, Any>>("$url/$db/$docId")
+      val body = response.body!!
+      val attachments = if (body.containsKey(ATTACHMENTS)) {
+        mapper.convertValue<Map<String, AttachmentResponse>>(body[ATTACHMENTS]!!)
+      } else {
+        emptyMap()
+      }
+
+      val userPropertiesMap = body.filterKeys { SYNC_GATEWAY_META.contains(it).not() }
+      val userProperties = mapper.writeValueAsString(userPropertiesMap)
+
+      return DocumentResponse(attachments, userProperties, body[ID] as String, body[REVISION] as String)
     } catch (e: Exception) {
       logger.error("Error during retrieval of documents list.", e)
     }
-    return DocumentResponse(emptyMap(), "", "")
+    return DocumentResponse(emptyMap(), "", "", "")
   }
 
 }
 
-data class DocumentResponse @JsonCreator constructor(@JsonProperty("_attachments") val attachments: Map<String, AttachmentResponse>,
-                                                     @JsonProperty("_id") val id: String,
-                                                     @JsonProperty("_rev") val revision: String) {
-  val userProperties: MutableMap<String, Any> = mutableMapOf()
-
-  @JsonAnySetter
-  fun addUserProperty(name: String, value: Any) {
-    userProperties.put(name, value)
-  }
-
-}
+data class DocumentResponse constructor(val attachments: Map<String, AttachmentResponse>,
+                                        var userProperties: String,
+                                        val id: String,
+                                        val revision: String)
 
 data class AttachmentResponse @JsonCreator constructor(@JsonProperty("content_type") val contentType: String,
                                                        @JsonProperty("digest") val digest: String,

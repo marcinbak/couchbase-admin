@@ -1,7 +1,6 @@
 # couchbase-admin
 
 TODO:
-4. View document (user properties, sync gateway metadata)
 5. Delete document
 6. Edit document
 7. Create document
@@ -15,3 +14,4 @@ TODO:
 15. Paging
 16. Nicer layouts
 17. Attachment preview
+18. Save document

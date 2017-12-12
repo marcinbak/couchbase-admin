@@ -11,7 +11,12 @@
 
   <h1>Couchbase Sync Gateway Admin Tool</h1>
   <h2 th:text="${'Documents properties'}"></h2>
+  <div><strong>Id: </strong><span th:text="${databaseDetails.id}"></span></div>
+  <div><strong>Revision: </strong><span th:text="${databaseDetails.revision}"></span></div>
 
+  <div>
+    <input class="resizedTextbox" type="text" th:field="[[*{databaseDetails.userProperties}]]"/>
+  </div>
 
   <h2 th:text="${'Attachments'}"></h2>
 
